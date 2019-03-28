@@ -14,17 +14,19 @@ function SubmitForm(PrepareString){
   }
 
 
+   
  function callPostMethod(ResponseToBeSent,TheSelectedValue) {
-	 debugger;
+	debugger;
 	$.ajax({
 	  method: "POST",
 	  url: "/InitialAppHandler", //test url
 	  data: { "method" : "FETCH_ENROLL_QUES",  "rating" : 1 },
 	  success: function(responseData){
-		  console.log(responseData);
+		alert("The server says: " + responseData)
 		// CaptureResponse(responseData); //Function For responseData
 	  }
 	});
+	debugger;
  };
 
 
