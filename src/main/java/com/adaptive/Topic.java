@@ -4,28 +4,25 @@ import java.util.ArrayList;
 
 public class Topic {
 
+    private String topicString;
+    private ArrayList<Level> levels;
 
+    public Topic(){
 
-    private String topic;
-    private ArrayList<Content> contents;
+    }
+    public String getTopicString() {
+        return topicString;
+    }
+    public void setTopicString(String topicString) {
+        this.topicString = topicString;
+    }
+    public ArrayList<Level> getLevels() {
+        return levels;
+    }
+    public void setLevels(ArrayList<Level> levels) {
+        this.levels = levels;
+    }
 
-    public Topic() {}
-    public Topic(String topic, ArrayList<Content> contents) {
-        this.topic = topic;
-        this.contents = contents;
-    }
-    public String getTopic() {
-        return topic;
-    }
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-    public ArrayList<Content> getContents() {
-        return contents;
-    }
-    public void setContents(ArrayList<Content> contents) {
-        this.contents = contents;
-    }
 
 
 }

@@ -3,8 +3,6 @@ package com.adaptive;
 import java.util.ArrayList;
 
 public class Level {
-
-
     private int levelNumber;
     private String description;
     private String example;
@@ -52,5 +50,6 @@ public class Level {
     public void setAnswer(int answer) {
         this.answer = answer;
     }
+
 
 }
