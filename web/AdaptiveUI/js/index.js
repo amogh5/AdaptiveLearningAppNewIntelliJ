@@ -18,14 +18,12 @@ function SubmitForm(PrepareString){
  function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 	// debugger;
 	$.ajax({
-	  type: "POST",
-	  url: "/InitialAppHandler", //test url
-	  data: { "method" : "FETCH_ENROLL_QUES",  "rating" : 1 },
+	  type: 'POST',
+	  url: '/InitialAppHandler', //test url
+	  data: { method : "FETCH_ENROLL_QUES",  rating : "1" },
 	  success: function(responseData){
 		console.log("The server says: " + responseData)
-          setTimeout(function () {
-              console.log("The server says: " + responseData)
-          }, 3000);
+
 		// CaptureResponse(responseData); //Function For responseData
 	  }
 	});
