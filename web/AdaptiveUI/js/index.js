@@ -16,17 +16,20 @@ function SubmitForm(PrepareString){
 
    
  function callPostMethod(ResponseToBeSent,TheSelectedValue) {
-	debugger;
+	// debugger;
 	$.ajax({
-	  method: "POST",
+	  type: "POST",
 	  url: "/InitialAppHandler", //test url
 	  data: { "method" : "FETCH_ENROLL_QUES",  "rating" : 1 },
 	  success: function(responseData){
-		alert("The server says: " + responseData)
+		console.log("The server says: " + responseData)
+          setTimeout(function () {
+              console.log("The server says: " + responseData)
+          }, 3000);
 		// CaptureResponse(responseData); //Function For responseData
 	  }
 	});
-	debugger;
+	// debugger;
  };
 
 
