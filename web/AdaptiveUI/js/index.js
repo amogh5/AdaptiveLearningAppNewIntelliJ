@@ -19,7 +19,7 @@ function SubmitForm(PrepareString){
 	// debugger;
 	$.ajax({
 	  type: 'POST',
-	  url: '/InitialAppHandler', //test url
+	  url: '/InitialAppHandler', //test url  // Deployeed on local server with different json  "http://localhost:3000/employees" 
 	  data: { method : "FETCH_ENROLL_QUES",  rating : "1" },
 	  success: function(responseData){
 		console.log("The server says: " + responseData)
