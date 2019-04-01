@@ -1,7 +1,7 @@
 function survey(){
 	document.getElementById("que1").innerHTML = "Q1:How Would you Rate yourself";
 	// document.getElementById("radioText").innerHTML = "2000";//To be used for changing the contents 
- }
+}
 
 function SubmitForm(PrepareString){
 	var radios = document.getElementsByName(PrepareString);
@@ -11,43 +11,43 @@ function SubmitForm(PrepareString){
 			alert("Hi");
 			break;
 		}
-	 }
-  }
+	}
+}
 
 
-   
- function callPostMethod(ResponseToBeSent,TheSelectedValue) {
+
+function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 	// debugger;
 	$.ajax({
-	  type: 'POST',
-	  url: 'InitialAppHandler', //test url
-        dataType: 'JSON',
-	  data: { "method" : "FETCH_ENROLL_QUES",  "rating" : "1" },
-	  success: function(responseData){
-		console.log("The server says: " + responseData);
+		type: 'POST',
+		url: 'InitialAppHandler', //test url
+		dataType: 'JSON',
+		data: { "method" : "FETCH_ENROLL_QUES",  "rating" : "1" },
+		success: function(responseData){
+			console.log("The server says: " + responseData);
 
-		// CaptureResponse(responseData); //Function For responseData
-	  },
-        fail: function(xhr, textStatus, errorThrown){
-            alert('request failed');
-        }
+			// CaptureResponse(responseData); //Function For responseData
+		},
+		fail: function(xhr, textStatus, errorThrown){
+			alert('request failed');
+		}
 	});
 	// debugger;
- };
+};
 
 $("#form1").submit(function(e) {
-    e.preventDefault();
+	e.preventDefault();
 });
 
- /*
- function CaptureResponse(ReturnResponse){
-		   if(ReturnResponse.QuestionNO == 1)//
-		   {
-          Substitute(ReturnResponse.Question);
-			  //This function will substitute the Response with new content
-		   }
-	 }
-		
+/*
+function CaptureResponse(ReturnResponse){
+          if(ReturnResponse.QuestionNO == 1)//
+          {
+         Substitute(ReturnResponse.Question);
+             //This function will substitute the Response with new content
+          }
+    }
+
 */
 
 /*	function Substitute(QuestionContent){
