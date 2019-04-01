@@ -7,7 +7,8 @@ function SubmitForm(PrepareString){
 	var radios = document.getElementsByName(PrepareString);
 	for (var i = 0, length = radios.length; i < length; i++) {
 		if (radios[i].checked) {
-			callPostMethod(PrepareString,radios[i].value);		
+			callPostMethod(PrepareString,radios[i].value);
+			alert("Hi");
 			break;
 		}
 	 }
@@ -19,17 +20,24 @@ function SubmitForm(PrepareString){
 	// debugger;
 	$.ajax({
 	  type: 'POST',
-	  url: '/InitialAppHandler', //test url
-	  data: { method : "FETCH_ENROLL_QUES",  rating : "1" },
+	  url: 'InitialAppHandler', //test url
+        dataType: 'JSON',
+	  data: { "method" : "FETCH_ENROLL_QUES",  "rating" : "1" },
 	  success: function(responseData){
-		console.log("The server says: " + responseData)
+		console.log("The server says: " + responseData);
 
 		// CaptureResponse(responseData); //Function For responseData
-	  }
+	  },
+        fail: function(xhr, textStatus, errorThrown){
+            alert('request failed');
+        }
 	});
 	// debugger;
  };
 
+$("#form1").submit(function(e) {
+    e.preventDefault();
+});
 
  /*
  function CaptureResponse(ReturnResponse){

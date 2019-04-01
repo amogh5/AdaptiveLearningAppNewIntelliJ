@@ -1,7 +1,6 @@
 package com.adaptive;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +15,14 @@ public class InitialAppHandler extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("HIIIIIIIIIIIIIII");
         StringBuilder sb = new StringBuilder();
-        BufferedReader br = request.getReader();
+        BufferedReader br =null ;
         String str = null;
         String method = null;
         String rating =  null;
@@ -30,35 +31,51 @@ public class InitialAppHandler extends HttpServlet {
         String experience =null;
         String userId =null;
 
-        while ((str = br.readLine()) != null) {
-            sb.append(str);
-        }
-        JSONObject jObj;
+//        JSONObject jObj;
+
+//        ObjectMapper mapper = new ObjectMapper();
 
         try {
-            jObj = new JSONObject(sb.toString());
-            method = jObj.getString("requestMethod");
+/*
+
+            while ((str = br.readLine()) != null) {
+                sb.append(str);
+            }
+*/
+            String json = "";
+            br = request.getReader();
+            if(br != null){
+                json = br.readLine();
+                System.out.println(json);
+            }
+
+            ObjectMapper mapper = new ObjectMapper();
+            InitialAppRequest article = mapper.readValue(json, InitialAppRequest.class);
+
+
+//            jObj = new JSONObject(sb.toString());
+            method = article.getMethod();
 
             if(method.equalsIgnoreCase(Constants.fetchEnrollQues))
             {
-                rating = jObj.getString("rating");
-                result=fetchEnrollmentQuestions(rating);
+//                rating = request.getParameter("rating");
+                result=fetchEnrollmentQuestions(article.getRating());
             }
             else if(method.equalsIgnoreCase(Constants.evaluateEnrollQues))
             {
-                rating = jObj.getString("rating");
-                answer = jObj.getString("answer");
+                rating = article.getRating();
+                answer = article.getAnswer();
                 result=evaluateEnrollmentQuestions(rating,answer);
             }
             else if(method.equalsIgnoreCase(Constants.calculateUserLevel))
             {
-                experience = jObj.getString("experience");
-                rating = jObj.getString("rating");
-                userId= jObj.getString("userId");
+                experience = article.getExperience();
+                rating = article.getRating();
+                userId= article.getUserId();
                 userLevelHeuristicFunct(userId,rating, experience);
             }
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

@@ -10,4 +10,13 @@
         <welcome-file>\AdaptiveUI\index.html</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>InitialAppHandler</servlet-name>
+        <servlet-class>com.adaptive.InitialAppHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitialAppHandler</servlet-name>
+        <url-pattern>/InitialAppHandler</url-pattern>
+    </servlet-mapping>
+
 </web-app>
