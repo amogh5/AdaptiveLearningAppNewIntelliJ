@@ -1,14 +1,19 @@
 function survey(){
 	document.getElementById("que1").innerHTML = "Q1:How Would you Rate yourself";
+	document.getElementById("question2").style.display = "none";
+	document.getElementById("question3").style.display = "none";
+	document.getElementById("question4").style.display = "none";
 	// document.getElementById("radioText").innerHTML = "2000";//To be used for changing the contents 
 }
-
+var response1;
 function SubmitForm(PrepareString){
 	var radios = document.getElementsByName(PrepareString);
 	for (var i = 0, length = radios.length; i < length; i++) {
 		if (radios[i].checked) {
+			document.getElementById("question1").style.display = "none";
+			document.getElementById("question2").style.display = "block";
 			callPostMethod(PrepareString,radios[i].value);
-			alert("Hi");
+			document.getElementById("que2").innerHTML = response1;
 			break;
 		}
 	}
@@ -26,6 +31,8 @@ function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 		success: function(responseData){
 			console.log("The server says: " + responseData);
 
+			document.getElementById("que2").innerHTML = "Q2: "+responseData;
+			response1="Q2: "+responseData;
 			// CaptureResponse(responseData); //Function For responseData
 		},
 		fail: function(xhr, textStatus, errorThrown){
@@ -34,10 +41,7 @@ function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 	});
 	// debugger;
 };
-/*
-$("#form1").submit(function(e) {
-	e.preventDefault();
-});*/
+
 
 /*
 function CaptureResponse(ReturnResponse){
