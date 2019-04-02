@@ -34,10 +34,10 @@ function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 	});
 	// debugger;
 };
-
+/*
 $("#form1").submit(function(e) {
 	e.preventDefault();
-});
+});*/
 
 /*
 function CaptureResponse(ReturnResponse){

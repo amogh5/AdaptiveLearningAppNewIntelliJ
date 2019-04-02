@@ -49,29 +49,31 @@ public class InitialAppHandler extends HttpServlet {
                 System.out.println(json);
             }
 
-            ObjectMapper mapper = new ObjectMapper();
+            /*ObjectMapper mapper = new ObjectMapper();
             InitialAppRequest article = mapper.readValue(json, InitialAppRequest.class);
-
+            */System.out.println("ccccccccccc");
 
 //            jObj = new JSONObject(sb.toString());
-            method = article.getMethod();
+            String[] paramList = json.split("&");
+            method = paramList[0].split("=")[1];
 
             if(method.equalsIgnoreCase(Constants.fetchEnrollQues))
             {
 //                rating = request.getParameter("rating");
-                result=fetchEnrollmentQuestions(article.getRating());
+                rating = paramList[1].split("=")[1];
+                result=fetchEnrollmentQuestions(rating);
             }
             else if(method.equalsIgnoreCase(Constants.evaluateEnrollQues))
             {
-                rating = article.getRating();
-                answer = article.getAnswer();
+               /* rating = article.getRating();
+                answer = article.getAnswer();*/
                 result=evaluateEnrollmentQuestions(rating,answer);
             }
             else if(method.equalsIgnoreCase(Constants.calculateUserLevel))
             {
-                experience = article.getExperience();
+               /* experience = article.getExperience();
                 rating = article.getRating();
-                userId= article.getUserId();
+                userId= article.getUserId();*/
                 userLevelHeuristicFunct(userId,rating, experience);
             }
 
