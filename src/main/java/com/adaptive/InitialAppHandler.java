@@ -152,9 +152,13 @@ public class InitialAppHandler extends HttpServlet {
                 solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)+1));
             }
             else
-            {
-                solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)-1));
-            }
+                {
+                    if(Integer.parseInt(rating)!=1)
+                    solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)-1));
+                    else
+                        solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)));
+
+                }
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
