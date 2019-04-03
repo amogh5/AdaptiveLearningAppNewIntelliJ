@@ -20,7 +20,6 @@ public class InitialAppHandler extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("HIIIIIIIIIIIIIII");
         StringBuilder sb = new StringBuilder();
         BufferedReader br =null ;
         String str = null;
@@ -51,7 +50,7 @@ public class InitialAppHandler extends HttpServlet {
 
             /*ObjectMapper mapper = new ObjectMapper();
             InitialAppRequest article = mapper.readValue(json, InitialAppRequest.class);
-            */System.out.println("ccccccccccc");
+            */
 
 //            jObj = new JSONObject(sb.toString());
             String[] paramList = json.split("&");
@@ -67,6 +66,8 @@ public class InitialAppHandler extends HttpServlet {
             {
                /* rating = article.getRating();
                 answer = article.getAnswer();*/
+                rating = paramList[1].split("=")[1];
+                answer = paramList[2].split("=")[1];
                 result=evaluateEnrollmentQuestions(rating,answer);
             }
             else if(method.equalsIgnoreCase(Constants.calculateUserLevel))
@@ -74,6 +75,9 @@ public class InitialAppHandler extends HttpServlet {
                /* experience = article.getExperience();
                 rating = article.getRating();
                 userId= article.getUserId();*/
+                userId = paramList[1].split("=")[1];
+                rating = paramList[2].split("=")[1];
+                experience = paramList[3].split("=")[1];
                 userLevelHeuristicFunct(userId,rating, experience);
             }
 
