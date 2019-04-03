@@ -3,63 +3,56 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--<link rel="shortcut icon" href="/AdaptiveLearningApp/AdaptiveUI/img/favicon.png">-->
+    <link rel="shortcut icon" href="img/adapt.jpg">
+    <link rel="shortcut icon" href="img/favicon.png">
 
     <title></title>
-
+    
     <!--StyleSheets-->
-    <link href="/AdaptiveLearningApp/AdaptiveUI/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/AdaptiveLearningApp/AdaptiveUI/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="/AdaptiveLearningApp/AdaptiveUI/css/index.css" rel="stylesheet">
-    <script src="/AdaptiveLearningApp/AdaptiveUI/js/index.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+  <script src="js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-
+	
 </head>
-<body class="index-page" onload="survey();" >
-<div class="container" style="background-color: white">
-    <!--<form class="login-form">-->
-    <div id="questionlist">
-        <div id="question1" >
-            <p class ="Question" id="que1"></p>
-            <input type="radio" name="Q1rating" value="1"> 1
-            <input type="radio" name="Q1rating" value="2"> 2
-            <input type="radio" name="Q1rating" value="3"> 3
-            <input type="radio" name="Q1rating" value="4"> 4
-            <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" onclick="SubmitForm('Q1rating')">Next</button>
-        </div>
-        <div id="question2" >
-            <p class ="Question" id="que2"></p>
-            <input type="radio" name="Q1rating" value="1"> 1
-            <input type="radio" name="Q1rating" value="2"> 2
-            <input type="radio" name="Q1rating" value="3"> 3
-            <input type="radio" name="Q1rating" value="4"> 4
-            <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" onclick="SubmitForm('Q1rating')">Next</button>
-        </div>
-        <div id="question3" >
-            <p class ="Question" id="que3"></p>
-            <input type="radio" name="Q1rating" value="1"> 1
-            <input type="radio" name="Q1rating" value="2"> 2
-            <input type="radio" name="Q1rating" value="3"> 3
-            <input type="radio" name="Q1rating" value="4"> 4
-            <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" onclick="SubmitForm('Q1rating')">Next</button>
-        </div>
-        <div id="question4" >
-            <p class ="Question" id="que4"></p>
-            <input type="radio" name="Q1rating" value="1"> 1
-            <input type="radio" name="Q1rating" value="2"> 2
-            <input type="radio" name="Q1rating" value="3"> 3
-            <input type="radio" name="Q1rating" value="4"> 4
-            <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" onclick="SubmitForm('Q1rating')">Next</button>
-        </div>
-    <!--</form>-->
+  <body class="index-page" onload="survey()">
+    <div class="container">
+      <form class="login-form">  
+         <div id="question1">      
+            <p class ="Question" id="que1">Q1:How Would you Rate yourself</p>
+             <input type="radio" name="Q1rating" id ="option1" value="1"> 1
+             <input type="radio" name="Q1rating" id ="option2" value="2"> 2
+             <input type="radio" name="Q1rating" id ="option3" value="3"> 3
+             <input type="radio" name="Q1rating" id ="option4" value="4"> 4
+              <button class="btn btn-primary btn-lg btn-block" type="button" value="Submit" onclick="SubmitForm('Q1rating', 'Submit1' )">Next</button>
+          </div>
+          <div id="question2">
+              <p class ="Question" id="que2"></p>
+              <input type="radio" name="Q2rating" id ="option12" value="1"><label for="option12">Option 1</label> </input>
+              <input type="radio" name="Q2rating" id ="option22" value="2"><label for="option22">Option 2</label> </input>
+              <input type="radio" name="Q2rating" id ="option32" value="3"><label for="option32">Option 3</label> </input>
+              <button class="btn btn-primary btn-lg btn-block" type="button" value="Submit2" onclick="SubmitForm('Q2rating','Submit2')">Next</button>
+          </div>
+          <div id="question3">
+              <p class ="Question" id="que3"></p>
+              <input type="radio" name="Q3rating" id ="option13" value="1"><label for="option13">Option 1</label> </input>
+              <input type="radio" name="Q3rating" id ="option23" value="2"><label for="option23">Option 2</label> </input>
+              <input type="radio" name="Q3rating" id ="option33" value="3"><label for="option33">Option 3</label> </input>
+              <button class="btn btn-primary btn-lg btn-block" type="button" value="Submit2" onclick="SubmitForm('Q3rating','Submit3')">Next</button>
+          </div>
+          <div id="question4">
+              <p class ="Question" id="que4"></p>
+              <input title="EXP. in Months" id="exp" name="exp" type= "number" value="experience" /><br />
+              <button class="btn btn-primary btn-lg btn-block" type="button" value="Submit2" onclick="SubmitFormFinal('exp','Submit4')">Submit</button>
+          </div>
+        </form>
+
     </div>
-
-</div>
-<div>
-
-</div>
-</body>
+	<div>
+		
+	</div>
+  </body>
 </html>
