@@ -20,28 +20,27 @@ function SubmitForm(PrepareString){
 }
 
 
-
 function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 	// debugger;
-	$.ajax({
-		type: 'POST',
-		url: 'InitialAppHandler', //test url
-		dataType: 'JSON',
-		data: { "method" : "FETCH_ENROLL_QUES",  "rating" : "1" },
-		success: function(responseData){
-			console.log("The server says: " + responseData);
-
-			document.getElementById("que2").innerHTML = "Q2: "+responseData;
-			response1="Q2: "+responseData;
-			// CaptureResponse(responseData); //Function For responseData
-		},
-		fail: function(xhr, textStatus, errorThrown){
-			alert('request failed');
-		}
+	$.ajax({	
+              url: 'InitialAppHandler', //this will use the form's action attribute
+              type: 'post',
+              data: { "method" : "FETCH_ENROLL_QUES",  "rating" : "1" },
+              contentType: "application/json",
+              success: function(responseData){
+              var response = CaptureResponse(responseData); //Function For responseData
+                 alert("This is the response" +response);
+              }
 	});
 	// debugger;
 };
 
+function CaptureResponse(ReturnResponse){
+             var obj = JSON.stringify(ReturnResponse);
+             var data = JSON.parse(obj);
+             return data;
+	 }
+		
 
 /*
 function CaptureResponse(ReturnResponse){
