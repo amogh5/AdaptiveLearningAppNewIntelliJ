@@ -1,13 +1,16 @@
 package com.adaptive;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
 
 @WebServlet(name = "InitialAppHandler")
 public class InitialAppHandler extends HttpServlet {
@@ -29,9 +32,9 @@ public class InitialAppHandler extends HttpServlet {
         String answer =null;
         String experience =null;
         String userId =null;
-
+        String jsonResult =null;
 //        JSONObject jObj;
-
+            Questions returnQuestion = new Questions();
 //        ObjectMapper mapper = new ObjectMapper();
 
         try {
@@ -60,7 +63,9 @@ public class InitialAppHandler extends HttpServlet {
             {
 //                rating = request.getParameter("rating");
                 rating = paramList[1].split("=")[1];
-                result=fetchEnrollmentQuestions(rating);
+                returnQuestion=fetchEnrollmentQuestions(rating);
+
+
             }
             else if(method.equalsIgnoreCase(Constants.evaluateEnrollQues))
             {
@@ -68,7 +73,7 @@ public class InitialAppHandler extends HttpServlet {
                 answer = article.getAnswer();*/
                 rating = paramList[1].split("=")[1];
                 answer = paramList[2].split("=")[1];
-                result=evaluateEnrollmentQuestions(rating,answer);
+                returnQuestion=evaluateEnrollmentQuestions(rating,answer);
             }
             else if(method.equalsIgnoreCase(Constants.calculateUserLevel))
             {
@@ -79,20 +84,29 @@ public class InitialAppHandler extends HttpServlet {
                 rating = paramList[2].split("=")[1];
                 experience = paramList[3].split("=")[1];
                 userLevelHeuristicFunct(userId,rating, experience);
+//                response.sendRedirect("/AdaptiveUI/Training.html");
             }
+
+            ObjectMapper objectMapper = new ObjectMapper();
+                 jsonResult = objectMapper.writeValueAsString(returnQuestion);
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        response.setContentType("text/plain");
+        /*response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(result);
+*/
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(jsonResult);
 
     }
 
 
-    public static String fetchEnrollmentQuestions(String rating)
+    public static Questions fetchEnrollmentQuestions(String rating)
     {
         File file = new File(Constants.enrollQuesFile);
 
@@ -100,7 +114,8 @@ public class InitialAppHandler extends HttpServlet {
         String st=null;
         String[] line = null;
         String question =null;
-
+String[] list= null;
+Questions result = new Questions();
         try {
 
             br = new BufferedReader(new FileReader(file));
@@ -108,7 +123,15 @@ public class InitialAppHandler extends HttpServlet {
             {
                 line = st.split(",");
                 if(line[0].equalsIgnoreCase(rating))
-                    question= line[1];
+                   list=line[1].split("#");
+//                    question= line[1];
+            result.setQuestion(list[0]);
+                result.setOpt1(list[1]);
+                result.setOpt2(list[2]);
+                result.setOpt3(list[3]);
+                result.setOpt4(list[4]);
+
+
             }
 
         } catch (Exception e) {
@@ -125,10 +148,10 @@ public class InitialAppHandler extends HttpServlet {
             }
         }
 
-        return question;
+        return result;
     }
 
-    public static String evaluateEnrollmentQuestions(String rating,String answer)
+    public static Questions evaluateEnrollmentQuestions(String rating,String answer)
     {
         File file = new File(Constants.enrollSolnFile);
 
@@ -136,6 +159,7 @@ public class InitialAppHandler extends HttpServlet {
         String st=null;
         String[] line = null;
         String solution =null;
+        Questions resultQuestion = new Questions();
 
         try {
 
@@ -149,14 +173,14 @@ public class InitialAppHandler extends HttpServlet {
             }
             if(solution.equalsIgnoreCase(answer))
             {
-                solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)+1));
+                resultQuestion=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)+1));
             }
             else
                 {
                     if(Integer.parseInt(rating)!=1)
-                    solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)-1));
+                    resultQuestion=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)-1));
                     else
-                        solution=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)));
+                     resultQuestion=fetchEnrollmentQuestions(String.valueOf(Integer.parseInt(rating)));
 
                 }
 
@@ -174,7 +198,7 @@ public class InitialAppHandler extends HttpServlet {
             }
         }
 
-        return solution;
+        return resultQuestion;
     }
 
 

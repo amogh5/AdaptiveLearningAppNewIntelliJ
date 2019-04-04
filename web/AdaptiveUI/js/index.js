@@ -22,6 +22,8 @@ function SubmitForm(PrepareString){
 
 function callPostMethod(ResponseToBeSent,TheSelectedValue) {
 	// debugger;
+
+
 	$.ajax({	
               url: 'InitialAppHandler', //this will use the form's action attribute
               type: 'post',
