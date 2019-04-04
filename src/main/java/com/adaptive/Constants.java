@@ -8,9 +8,9 @@ public class Constants {
     public static String calculateUserLevel="CALCULATE_USER_LEVEL";
     public static String enrollQuesFile="C:\\Users\\HP\\IdeaProjects\\AdaptiveLearningApp\\textFiles\\InitialEnrollQuestions.txt";
     public static String enrollSolnFile="C:\\Users\\HP\\IdeaProjects\\AdaptiveLearningApp\\textFiles\\InitialEnrollSolution.txt";
-    public static String userLevelFile="C:\\Users\\HP\\IdeaProjects\\AdaptiveLearningApp\\textFiles\\UserLevelList.txt";
-    public static String contentFile="C:\\Users\\HP\\IdeaProjects\\AdaptiveLearningApp\\textFiles\\content.json";
-    public static String lastFiveFile="C:\\Users\\HP\\IdeaProjects\\AdaptiveLearningApp\\textFiles\\lastFive.txt";
+    public static String userLevelFile="C:\\Users\\neera\\IdeaProjects\\AdaptiveLearningAppNewIntelliJ\\textFiles\\UserLevelList.txt";
+    public static String contentFile="C:\\Users\\neera\\IdeaProjects\\AdaptiveLearningAppNewIntelliJ\\textFiles\\content.json";
+    public static String lastFiveFile="C:\\Users\\neera\\IdeaProjects\\AdaptiveLearningAppNewIntelliJ\\textFiles\\lastFive.txt";
     public static String userLevel1= "LEVEL1";
     public static String userLevel2= "LEVEL2";
     public static String userLevel3= "LEVEL3";
